@@ -9,7 +9,7 @@ const RootLayout = () => {
       <header>
         <Header />
       </header>
-      <div>
+      <div className="min-h-screen">
         <Outlet />
       </div>
       <footer>

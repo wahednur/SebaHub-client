@@ -1,1 +1,46 @@
 @import "tailwindcss";
+@layer base {
+  :root {
+    --primary: #00a8b5;
+    --secondary: #f5a623;
+    --bg-light: #f8fafc;
+    --bg-dark: #1f2a44;
+    --text-light: #2d3748;
+    --text-dark: #e2e8f0;
+    --success: #38a169;
+    --warning: #d69e2e;
+    --error: #e53e3e;
+    --neutral: #cbd5e0;
+  }
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-bg-light: var(--bg-light);
+  --color-bg-dark: var(--bg-dark);
+  --color-text-light: var(--text-light);
+  --color-text-dark: var(--text-dark);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color: var(--neutral);
+}
+/* Desk navbar css start  */
+.desk-menu li a {
+  @apply px-4 py-3 hover:text-primary;
+}
+.desk-menu li a.active {
+  @apply text-primary;
+}
+
+/* Desk navbar css end  */
+/* Button css start  */
+.btn {
+  @apply flex justify-center items-center bg-primary hover:bg-secondary py-2 px-4  duration-300 ease-in-out text-white rounded-md;
+}
+/* Button css start  */
+
+.container {
+  @apply mx-auto px-4 lg:px-0;
+}
