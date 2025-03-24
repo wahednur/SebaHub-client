@@ -22,7 +22,9 @@ const Navbar = () => {
       <div className="desk-nav hidden lg:block">
         <div className="flex items-center justify-between h-16 container">
           <Link to={`/`}>
-            <h1 className="font-bold text-2xl">LOGO</h1>
+            <h1 className="font-bold text-2xl text-primary">
+              Seba<span className="text-secondary">Hub</span>
+            </h1>
           </Link>
           <ul className="desk-menu flex items-center">{navLists}</ul>
           <div className="desk-nav-user flex items-center gap-4">
