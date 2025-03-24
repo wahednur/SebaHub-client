@@ -47,7 +47,10 @@ h5,
 h6 {
   @apply font-poppins;
 }
-
+/* card title */
+.cat-title {
+  @apply text-lg font-semibold mb-2;
+}
 /* Desk navbar css start  */
 .desk-menu li a {
   @apply px-4 py-3 hover:text-primary;
