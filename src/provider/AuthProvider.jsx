@@ -8,7 +8,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebaseConfig";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -69,7 +69,7 @@ const AuthProvider = ({ children }) => {
     loginUser,
     updateUser,
   };
-
+  console.log("Wahednur");
   // User auth state observer
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {

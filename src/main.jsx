@@ -4,6 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { RouterProvider } from "react-router-dom";
 import { Toaster } from "sonner";
 import "./index.css";
+
 import AuthProvider from "./provider/AuthProvider";
 import router from "./routes/routes";
 

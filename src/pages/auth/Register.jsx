@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
+  const { user, setUser, googleLogin, createUser } = useAuth();
   return (
     <div className="container">
       <div className="min-h-[calc(100vh-415px)] flex justify-center items-center">
