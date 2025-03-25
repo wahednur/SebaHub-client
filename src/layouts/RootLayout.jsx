@@ -5,7 +5,7 @@ import Header from "../components/header/Header";
 
 const RootLayout = () => {
   return (
-    <main>
+    <main className="overflow-hidden">
       <header>
         <Header />
       </header>

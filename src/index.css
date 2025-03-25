@@ -69,3 +69,60 @@ h6 {
 .container {
   @apply mx-auto px-4 lg:px-0;
 }
+/* Navbar css start  */
+.desk-nav {
+  @apply hidden lg:flex justify-between items-center;
+}
+.desk-nav nav ul {
+  @apply flex items-center;
+}
+.desk-nav nav ul li a {
+  @apply px-4 font-semibold text-lg  hover:text-primary duration-300;
+}
+.desk-nav nav ul li a.active {
+  @apply text-primary;
+}
+.desk-nav .right-nav {
+  @apply flex text-lg items-center gap-10 relative;
+}
+.desk-nav .right-nav .nav-icon {
+  @apply flex gap-4 text-lg;
+}
+.desk-nav .right-nav .nav-icon a {
+  @apply hover:text-primary duration-300;
+}
+.desk-nav .right-nav .user-icon {
+  @apply rounded-full border border-primary w-12 h-12;
+}
+.nav-user-container {
+  @apply bg-white w-[300px] z-10 border border-primary rounded-lg p-4 space-y-4 absolute -right-[700px] opacity-0 top-16 duration-500;
+}
+.nav-user-container .user-info {
+  @apply flex gap-2 items-center;
+}
+.nav-user-container .user-info h5 {
+  @apply font-semibold;
+}
+.nav-user-container .user-info p {
+  @apply text-text-light;
+}
+.nav-user-container.open {
+  @apply right-0 duration-500 opacity-100;
+}
+.mbl-nav-wrap {
+  @apply lg:hidden relative;
+}
+.mbl-nav-wrap .mbl-nav {
+  @apply bg-primary/70 w-[300px] rounded-lg overflow-hidden absolute top-14 -left-[500px] duration-500;
+}
+.mbl-nav-wrap .mbl-nav ul li a {
+  @apply py-4 w-full block p-4 md:p-4 text-sm;
+}
+.mbl-nav-wrap .mbl-nav ul li a.active {
+  @apply bg-secondary text-white;
+}
+.mbl-nav-wrap .mbl-nav.open {
+  @apply left-0;
+}
+
+/* Navbar css end  */
