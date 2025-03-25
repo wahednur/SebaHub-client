@@ -3,6 +3,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebaseConfig";
@@ -42,6 +43,19 @@ const AuthProvider = ({ children }) => {
       console.error(error);
     }
   };
+  // Update user
+
+  const updateUser = async (name, photo) => {
+    try {
+      setLoading(true);
+      return updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photo,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const logOut = async () => {};
   const authInfo = {
@@ -53,6 +67,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     createUser,
     loginUser,
+    updateUser,
   };
 
   // User auth state observer
