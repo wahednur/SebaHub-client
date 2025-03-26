@@ -1,7 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { toast } from "sonner";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { user, setUser, loginUser, googleLogin, loading } = useAuth();
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await googleLogin();
+      setUser(result.user);
+      toast.success(`Welcome ${result?.user?.displayName}`);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    try {
+      const result = await loginUser(email, password);
+      toast.success(`Welcome ${result?.user?.displayName}`);
+    } catch (error) {
+      toast.error("Invalid email or password", error);
+      console.error("Invalid email or password", error);
+    }
+  };
+  if (user) return <Navigate to="/" />;
+  if (user || loading) return null;
   return (
     <div className="container">
       <div className="min-h-[calc(100vh-415px)] flex justify-center items-center">
@@ -14,7 +43,10 @@ const Login = () => {
             </p>
           </div>
           <div className="text-center">
-            <button className="w-full my-5 flex items-center justify-center gap-3 py-2 border border-primary/30 rounded-md cursor-pointer text-primary hover:bg-primary hover:text-white transition-all duration-300 group">
+            <button
+              onClick={handleGoogleLogin}
+              className="w-full my-5 flex items-center justify-center gap-3 py-2 border border-primary/30 rounded-md cursor-pointer text-primary hover:bg-primary hover:text-white transition-all duration-300 group"
+            >
               <img
                 className="group-hover:bg-white p-2 rounded-full duration-300 transition-all"
                 src="/g.svg"
@@ -23,25 +55,7 @@ const Login = () => {
               Sign up with Google
             </button>
           </div>
-          <form>
-            <div className="flex flex-col mb-4">
-              <label htmlFor="name">Name</label>
-              <input
-                className="frm-ctr"
-                type="text"
-                name="name"
-                placeholder="Your Name"
-              />
-            </div>
-            <div className="flex flex-col mb-4">
-              <label htmlFor="photo">Photo</label>
-              <input
-                className="frm-ctr"
-                type="text"
-                name="photo"
-                placeholder="Your Name"
-              />
-            </div>
+          <form onSubmit={handleLogin}>
             <div className="flex flex-col mb-4">
               <label htmlFor="email">Email</label>
               <input
@@ -69,7 +83,9 @@ const Login = () => {
               />
             </div>
             <div className="flex flex-col mt-10">
-              <button className="btn w-full">Sing up</button>
+              <button type="submit" className="btn w-full">
+                Sing In
+              </button>
             </div>
           </form>
           <div className="text-center mt-5">

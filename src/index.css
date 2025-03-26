@@ -136,3 +136,10 @@ h6 {
 a {
   @apply hover:text-primary duration-300;
 }
+.banner::before {
+  @apply absolute top-0 left-0 w-full h-full bg-black/20 content-[''];
+  z-index: -1;
+}
+.banner {
+  z-index: 1;
+}

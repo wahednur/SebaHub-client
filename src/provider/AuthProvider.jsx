@@ -6,6 +6,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 import auth from "../firebase/firebaseConfig";
 
 export const AuthContext = createContext(null);
@@ -18,7 +19,7 @@ const AuthProvider = ({ children }) => {
   const googleLogin = async () => {
     try {
       setLoading(true);
-      return signInWithPopup(auth, googleProvider);
+      return await signInWithPopup(auth, googleProvider);
     } catch (error) {
       console.error(error);
     }
@@ -28,7 +29,7 @@ const AuthProvider = ({ children }) => {
   const createUser = async (email, password) => {
     try {
       setLoading(true);
-      return createUserWithEmailAndPassword(auth, email, password);
+      return await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error(error);
     }
@@ -38,9 +39,10 @@ const AuthProvider = ({ children }) => {
   const loginUser = async (email, password) => {
     try {
       setLoading(true);
-      return signInWithEmailAndPassword(auth, email, password);
+      return await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error(error);
+      toast.error(error.message);
     }
   };
   // Update user
@@ -48,7 +50,7 @@ const AuthProvider = ({ children }) => {
   const updateUser = async (name, photo) => {
     try {
       setLoading(true);
-      return updateProfile(auth.currentUser, {
+      return await updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: photo,
       });
