@@ -133,3 +133,6 @@ h6 {
 .frm-ctr {
   @apply w-full px-3 py-2 border border-primary/30 rounded-md focus:outline-none;
 }
+a {
+  @apply hover:text-primary duration-300;
+}

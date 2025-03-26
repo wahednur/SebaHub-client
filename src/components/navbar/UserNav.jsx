@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const UserNav = () => {
+  const { user, logOut } = useAuth();
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
@@ -25,7 +27,13 @@ const UserNav = () => {
   return (
     <div className="nav-user">
       <button ref={buttonRef} onClick={() => setOpen(!open)}>
-        <img className="user-icon" src="wahednur.jpg" alt="" />
+        {user?.photoURL ? (
+          <img className="user-icon" src="wahednur.jpg" alt="" />
+        ) : (
+          <span className="w-10 h-10 rounded-full bg-primary text-white flex justify-center items-center">
+            {user?.displayName.slice(0, 1)}
+          </span>
+        )}
       </button>
       <div
         onClick={() => setOpen(false)}
@@ -33,14 +41,27 @@ const UserNav = () => {
         className={`nav-user-container ${open ? "open" : ""}`}
       >
         <div className="user-info">
-          <img className="user-icon" src="wahednur.jpg" alt="" />
+          {user?.photoURL ? (
+            <img className="user-icon" src="wahednur.jpg" alt="" />
+          ) : (
+            <span className="w-10 h-10 rounded-full bg-primary text-white flex justify-center items-center">
+              {user?.displayName.slice(0, 1)}
+            </span>
+          )}
           <div className="flex flex-col">
-            <p className="font-semibold">Abdul Wahed Nur</p>
-            <small>wahednur@gmail.com</small>
+            <p className="font-semibold">{user?.displayName}</p>
+            <small>{user?.email}</small>
           </div>
         </div>
         <hr className="text-gray-300" />
-        <div className="flex flex-col">
+        <Link
+          className="hover:text-primary duration-300 w-full block"
+          to={`dashboard`}
+        >
+          Dashboard
+        </Link>
+        <hr className="text-gray-300" />
+        <div className="flex flex-col space-y-2">
           <Link to="/add-services">Add Service</Link>
           <Link to="/manage-services">Manage Services</Link>
           <Link to="/booked-services">Booked Services</Link>
@@ -51,7 +72,9 @@ const UserNav = () => {
           <Link className="btn btn-outline" to="#">
             Edit
           </Link>
-          <button className="btn">Logout</button>
+          <button onClick={() => logOut()} className="btn">
+            Logout
+          </button>
         </div>
       </div>
     </div>

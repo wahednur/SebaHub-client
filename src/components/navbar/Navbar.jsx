@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import UserNav from "./UserNav";
 
 const Navbar = () => {
+  const { user } = useAuth();
   const [mOpen, setMOpen] = useState(false);
 
   const navLists = (
@@ -19,7 +21,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="desk-nav hidden lg:block">
+      <div className="desk-nav hidden lg:block border-b-secondary border-b backdrop-blur-md">
         <div className="flex items-center justify-between h-16 container">
           <Link to={`/`}>
             <h1 className="font-bold text-2xl text-primary">
@@ -28,13 +30,23 @@ const Navbar = () => {
           </Link>
           <ul className="desk-menu flex items-center">{navLists}</ul>
           <div className="right-nav">
-            <Link className="btn btn-fill" to="/login">
-              Login
-            </Link>
-            <Link className="hover:text-primary duration-300" to={`dashboard`}>
-              Dashboard
-            </Link>
-            <UserNav />
+            {user?.email ? (
+              ""
+            ) : (
+              <Link className="btn btn-fill" to="/login">
+                Login
+              </Link>
+            )}
+            {user?.email && (
+              <Link
+                className="hover:text-primary duration-300"
+                to={`dashboard`}
+              >
+                Dashboard
+              </Link>
+            )}
+
+            {user?.email && <UserNav />}
           </div>
         </div>
       </div>

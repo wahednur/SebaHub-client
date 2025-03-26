@@ -57,7 +57,13 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const logOut = async () => {};
+  const logOut = async () => {
+    try {
+      return await auth.signOut();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const authInfo = {
     user,
     setUser,
