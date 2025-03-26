@@ -1,11 +1,49 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { Link, Navigate } from "react-router-dom";
+import { toast } from "sonner";
 import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
-  const { user, setUser, googleLogin, createUser } = useAuth();
+  const { user, setUser, googleLogin, createUser, updateUser, loading } =
+    useAuth();
+
+  //Google Login
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await googleLogin();
+      setUser(result.user);
+      toast.success(`Welcome ${result.user.displayName}`);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  // Create user with email and password
+  const handleCreateUser = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    try {
+      const result = await createUser(email, password);
+      await updateUser(name, photo);
+      setUser({ ...result?.user, displayName: name, photoURL: photo });
+      toast(`Welcom ${name}`);
+    } catch (error) {
+      toast.error(error.message);
+    }
+    console.table({ name, photo, email, password });
+  };
+  if (user) return <Navigate to="/" />;
+  if (user || loading) return null;
   return (
     <div className="container">
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <div className="min-h-[calc(100vh-415px)] flex justify-center items-center">
         <div className="w-full md:w-1/2 p-10 border border-primary/20 rounded-lg shadow-lg">
           <div className="text-center space-y-3">
@@ -16,7 +54,10 @@ const Register = () => {
             </p>
           </div>
           <div className="text-center">
-            <button className="w-full my-5 flex items-center justify-center gap-3 py-2 border border-primary/30 rounded-md cursor-pointer text-primary hover:bg-primary hover:text-white transition-all duration-300 group">
+            <button
+              onClick={handleGoogleLogin}
+              className="w-full my-5 flex items-center justify-center gap-3 py-2 border border-primary/30 rounded-md cursor-pointer text-primary hover:bg-primary hover:text-white transition-all duration-300 group"
+            >
               <img
                 className="group-hover:bg-white p-2 rounded-full duration-300 transition-all"
                 src="/g.svg"
@@ -25,7 +66,7 @@ const Register = () => {
               Sign up with Google
             </button>
           </div>
-          <form>
+          <form onSubmit={handleCreateUser}>
             <div className="flex flex-col mb-4">
               <label htmlFor="name">Name</label>
               <input
@@ -63,7 +104,9 @@ const Register = () => {
               />
             </div>
             <div className="flex flex-col mt-10">
-              <button className="btn w-full">Sing up</button>
+              <button type="submit" className="btn w-full">
+                Sing up
+              </button>
             </div>
           </form>
           <div className="text-center mt-5">

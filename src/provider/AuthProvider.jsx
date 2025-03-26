@@ -69,12 +69,13 @@ const AuthProvider = ({ children }) => {
     loginUser,
     updateUser,
   };
-  console.log("Wahednur");
+
   // User auth state observer
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      console.log(currentUser);
     });
     return () => unsubscribe();
   }, []);
