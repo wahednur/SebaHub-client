@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, Navigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 const Register = () => {
   const { user, setUser, googleLogin, createUser, updateUser, loading } =
     useAuth();
-
+  const [error, setError] = useState(null);
   //Google Login
   const handleGoogleLogin = async () => {
     try {
@@ -27,6 +27,21 @@ const Register = () => {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
+    if (password.length < 6) {
+      return setError("Password must be at least 6 characters log");
+    }
+    if (!/[a-z]/.test(password)) {
+      return setError("Password must contain at least one lowercase letter");
+    }
+    if (!/[A-Z]/.test(password)) {
+      return setError("Password must contain at least one uppercase letter");
+    }
+    if (!/[0-9]/.test(password)) {
+      return setError("Password must contain at least one number");
+    }
+    if (!/[@$!%*?&]/.test(password)) {
+      return setError("Password must contain at least one special character");
+    }
     try {
       const result = await createUser(email, password);
       await updateUser(name, photo);
@@ -74,6 +89,7 @@ const Register = () => {
                 type="text"
                 name="name"
                 placeholder="Your Name"
+                required
               />
             </div>
             <div className="flex flex-col mb-4">
@@ -82,7 +98,8 @@ const Register = () => {
                 className="frm-ctr"
                 type="text"
                 name="photo"
-                placeholder="Your Name"
+                placeholder="Your photo url"
+                required
               />
             </div>
             <div className="flex flex-col mb-4">
@@ -102,6 +119,7 @@ const Register = () => {
                 name="password"
                 placeholder="Your password"
               />
+              {error && <p className="text-red-500">{error}</p>}
             </div>
             <div className="flex flex-col mt-10">
               <button type="submit" className="btn w-full">
