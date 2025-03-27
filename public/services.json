@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Home Cleaning Service",
+    "description": "Get your home sparkling clean with our professional cleaning service using eco-friendly products.",
+    "price": 1500,
+    "category": "Cleaning",
+    "rating": 4.8,
+    "image": "https://i.ibb.co/z7BnMZN/home-cleaning.jpg"
+  },
+  {
+    "title": "AC Servicing & Repair",
+    "description": "Complete AC checkup, gas refill, and professional repair service available at your doorstep.",
+    "price": 1200,
+    "category": "Appliance",
+    "rating": 4.6,
+    "image": "https://i.ibb.co/4JVcSxM/ac-repair.jpg"
+  },
+  {
+    "title": "Plumbing Service",
+    "description": "Expert plumbing solutions including pipe fitting, leakage fixing, and bathroom & kitchen repairs.",
+    "price": 800,
+    "category": "Plumbing",
+    "rating": 4.7,
+    "image": "https://i.ibb.co/PDq8pvF/plumbing.jpg"
+  },
+  {
+    "title": "Electrical Repair",
+    "description": "Affordable electrical repairs including switch, light, fan installation, and wiring problem solutions.",
+    "price": 700,
+    "category": "Electrical",
+    "rating": 4.5,
+    "image": "https://i.ibb.co/cF6kW1r/electrical.jpg"
+  },
+  {
+    "title": "Pest Control Service",
+    "description": "Safe & effective pest control service for cockroaches, ants, termites, bed bugs & other pests.",
+    "price": 2000,
+    "category": "Pest Control",
+    "rating": 4.9,
+    "image": "https://i.ibb.co/8N7d3vS/pest-control.jpg"
+  },
+  {
+    "title": "Car Wash & Polish",
+    "description": "Premium car wash, polishing, waxing & complete interior vacuum cleaning service at your location.",
+    "price": 1000,
+    "category": "Automobile",
+    "rating": 4.6,
+    "image": "https://i.ibb.co/wrH0vQn/car-wash.jpg"
+  },
+  {
+    "title": "Home Painting",
+    "description": "Interior & exterior wall painting service with professional painters and top-quality paints.",
+    "price": 5000,
+    "category": "Painting",
+    "rating": 4.7,
+    "image": "https://i.ibb.co/z8bMgL4/home-painting.jpg"
+  },
+  {
+    "title": "Carpenter Service",
+    "description": "Furniture repair, new installation, door fitting & all wooden work by experienced carpenters.",
+    "price": 1500,
+    "category": "Carpentry",
+    "rating": 4.5,
+    "image": "https://i.ibb.co/wNgVbtT/carpenter.jpg"
+  }
+]

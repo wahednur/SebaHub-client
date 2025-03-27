@@ -16,12 +16,15 @@ const Navbar = () => {
       <li>
         <NavLink to={`/services`}>Services</NavLink>
       </li>
+      <li>
+        <NavLink to={`/add-service`}>Services</NavLink>
+      </li>
     </>
   );
 
   return (
     <>
-      <div className="desk-nav hidden lg:block border-b-secondary border-b backdrop-blur-md">
+      <div className="desk-nav hidden lg:block border-b-secondary border-b backdrop-blur-md relative z-50">
         <div className="flex items-center justify-between h-16 container">
           <Link to={`/`}>
             <h1 className="font-bold text-2xl text-primary">

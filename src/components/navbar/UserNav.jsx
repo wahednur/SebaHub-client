@@ -25,10 +25,15 @@ const UserNav = () => {
     };
   }, []);
   return (
-    <div className="nav-user">
+    <div className="nav-user z-50">
       <button ref={buttonRef} onClick={() => setOpen(!open)}>
         {user?.photoURL ? (
-          <img className="user-icon" src="wahednur.jpg" alt="" />
+          <img
+            className="user-icon"
+            src={user?.photoURL}
+            no-referrer="true"
+            alt=""
+          />
         ) : (
           <span className="w-10 h-10 rounded-full bg-primary text-white flex justify-center items-center">
             {user?.displayName.slice(0, 1)}
@@ -42,7 +47,12 @@ const UserNav = () => {
       >
         <div className="user-info">
           {user?.photoURL ? (
-            <img className="user-icon" src="wahednur.jpg" alt="" />
+            <img
+              className="user-icon"
+              src={user?.photoURL}
+              no-referrer="true"
+              alt=""
+            />
           ) : (
             <span className="w-10 h-10 rounded-full bg-primary text-white flex justify-center items-center">
               {user?.displayName.slice(0, 1)}
@@ -62,7 +72,7 @@ const UserNav = () => {
         </Link>
         <hr className="text-gray-300" />
         <div className="flex flex-col space-y-2">
-          <Link to="/add-services">Add Service</Link>
+          <Link to="/add-service">Add Service</Link>
           <Link to="/manage-services">Manage Services</Link>
           <Link to="/booked-services">Booked Services</Link>
           <Link to="/service-to-do"> Service-To-Do</Link>

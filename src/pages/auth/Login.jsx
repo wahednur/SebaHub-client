@@ -1,15 +1,18 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { user, setUser, loginUser, googleLogin, loading } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
     try {
       const result = await googleLogin();
       setUser(result.user);
+      navigate(location.state || "/", { replace: true });
       toast.success(`Welcome ${result?.user?.displayName}`);
     } catch (error) {
       toast.error(error.message);
@@ -23,14 +26,17 @@ const Login = () => {
     const password = form.password.value;
     try {
       const result = await loginUser(email, password);
+      navigate(location.state || "/", { replace: true });
       toast.success(`Welcome ${result?.user?.displayName}`);
     } catch (error) {
       toast.error("Invalid email or password", error);
       console.error("Invalid email or password", error);
     }
   };
-  if (user) return <Navigate to="/" />;
+  console.log(location?.state);
+  if (user) return navigate(location.state || "/", { replace: true });
   if (user || loading) return null;
+
   return (
     <div className="container">
       <div className="min-h-[calc(100vh-415px)] flex justify-center items-center">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import useAuth from "../../hooks/useAuth";
 
@@ -8,11 +8,14 @@ const Register = () => {
   const { user, setUser, googleLogin, createUser, updateUser, loading } =
     useAuth();
   const [error, setError] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
   //Google Login
   const handleGoogleLogin = async () => {
     try {
       const result = await googleLogin();
       setUser(result.user);
+      navigate(location?.state || "/");
       toast.success(`Welcome ${result.user.displayName}`);
     } catch (error) {
       toast.error(error.message);
@@ -46,13 +49,14 @@ const Register = () => {
       const result = await createUser(email, password);
       await updateUser(name, photo);
       setUser({ ...result?.user, displayName: name, photoURL: photo });
+      navigate(location?.state || "/");
       toast(`Welcom ${name}`);
     } catch (error) {
       toast.error(error.message);
     }
     console.table({ name, photo, email, password });
   };
-  if (user) return <Navigate to="/" />;
+  if (user) return navigate(location?.state || "/");
   if (user || loading) return null;
   return (
     <div className="container">
