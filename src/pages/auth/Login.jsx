@@ -33,7 +33,7 @@ const Login = () => {
       console.error("Invalid email or password", error);
     }
   };
-  console.log(location?.state);
+
   if (user) return navigate(location.state || "/", { replace: true });
   if (user || loading) return null;
 

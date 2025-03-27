@@ -143,3 +143,12 @@ a {
 .banner {
   z-index: 1;
 }
+.fix-height {
+  @apply min-h-[calc(100vh-415px)] w-full;
+}
+.flex-center {
+  @apply flex justify-center items-center w-full h-full;
+}
+.grp-col {
+  @apply flex flex-col mb-5;
+}

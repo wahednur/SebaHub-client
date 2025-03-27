@@ -19,7 +19,7 @@ const Banner = () => {
               <input
                 type="text"
                 name="search"
-                className="w-full bg-white px-5 py-3 rounded-lg shadow-md"
+                className="w-full bg-white px-5 py-3 rounded-lg shadow-md focus:outline-none"
                 placeholder="Search your services .."
               />
               <button className="bg-primary text-white p-2 rounded-lg flex items-center justify-center cursor-pointer  absolute right-1 top-1/2 -translate-y-1/2">

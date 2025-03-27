@@ -9,7 +9,7 @@ const RootLayout = () => {
       <header>
         <Header />
       </header>
-      <div className="min-h-[calc(100vh-415px)]">
+      <div className="fix-height">
         <Outlet />
       </div>
       <footer>
