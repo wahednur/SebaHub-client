@@ -25,7 +25,7 @@ const UserNav = () => {
     };
   }, []);
   return (
-    <div className="nav-user z-50">
+    <div className="nav-user z-0 relative">
       <button ref={buttonRef} onClick={() => setOpen(!open)}>
         {user?.photoURL ? (
           <img
@@ -65,17 +65,17 @@ const UserNav = () => {
         </div>
         <hr className="text-gray-300" />
         <Link
-          className="hover:text-primary duration-300 w-full block"
+          className="hover:text-primary duration-300 w-full block dark:text-dark text-text-light"
           to={`dashboard`}
         >
           Dashboard
         </Link>
         <hr className="text-gray-300" />
-        <div className="flex flex-col space-y-2">
-          <Link to="/add-service">Add Service</Link>
-          <Link to="/manage-services">Manage Services</Link>
-          <Link to="/booked-services">Booked Services</Link>
-          <Link to="/service-to-do"> Service-To-Do</Link>
+        <div className="flex flex-col space-y-2 dark:text-dark text-text-light">
+          <Link to="/dashboard/add-service">Add Service</Link>
+          <Link to="/dashboard/manage-services">Manage Services</Link>
+          <Link to="/dashboard/booked-services">Booked Services</Link>
+          <Link to="/dashboard/service-to-do"> Service-To-Do</Link>
         </div>
         <hr className="text-gray-300" />
         <div className="flex justify-between gap-6 w-full items-center">

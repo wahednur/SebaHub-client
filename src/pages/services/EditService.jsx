@@ -1,14 +1,17 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { Navigate, useLoaderData } from "react-router-dom";
 import { toast } from "sonner";
 import { imageUpload } from "../../api/utils";
-import useAuth from "../../hooks/useAuth";
 import { apiUrl } from "../../hooks/userServerAPI";
 
-const AddService = () => {
-  const { user } = useAuth();
+const EditService = () => {
+  // const { user } = useAuth();
   const [prevImg, setPrevImg] = useState();
+  const getServiceData = useLoaderData();
+  const { _id, title, description, category, area, price, image } =
+    getServiceData;
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,7 +22,7 @@ const AddService = () => {
     const price = parseFloat(form.price.value);
     const image = form.image.files[0];
     try {
-      const img_url = await imageUpload(image);
+      const img_url = image ? await imageUpload(image) : prevImg;
       const service = {
         title,
         description,
@@ -27,22 +30,25 @@ const AddService = () => {
         area,
         price,
         image: img_url,
-        user: {
-          email: user?.email,
-          name: user?.displayName,
-        },
       };
-      const { data } = await axios.post(`${apiUrl}/services`, service);
-      toast.success(`${title} successfully added`, data);
+      const { data } = await axios.patch(
+        `${apiUrl}/services/update/${_id}`,
+        service
+      );
+      toast.success(`${title} updated successfully`, data);
       form.reset();
+      <Navigate to={`/manage-services`} />;
     } catch (error) {
       toast.error(error.message);
     }
   };
+  useEffect(() => {
+    setPrevImg(image);
+  }, []);
   return (
     <div className="">
       <Helmet>
-        <title>Add Service</title>
+        <title>Edit {title} Service</title>
       </Helmet>
       <div className="container">
         <h1 className="sec-heading text-center pt-10">Add Service</h1>
@@ -57,7 +63,7 @@ const AddService = () => {
                     name="title"
                     className="frm-ctr"
                     placeholder="Enter your service title"
-                    required
+                    defaultValue={title}
                   />
                 </div>
                 <div className="grp-col">
@@ -66,8 +72,8 @@ const AddService = () => {
                     name="description"
                     className="frm-ctr"
                     placeholder="Enter your service description"
-                    required
                     rows={6}
+                    defaultValue={description}
                   ></textarea>
                 </div>
                 <div className="grp-col">
@@ -77,7 +83,7 @@ const AddService = () => {
                     name="area"
                     className="frm-ctr"
                     placeholder="Enter your service area"
-                    required
+                    defaultValue={area}
                   />
                 </div>
                 <div className="grp-col">
@@ -87,14 +93,18 @@ const AddService = () => {
                     name="price"
                     className="frm-ctr"
                     placeholder="Enter your service price"
-                    required
+                    defaultValue={price}
                   />
                 </div>
               </div>
               <div className="w-full md:w-1/3">
                 <div className="grp-col">
                   <label htmlFor="category">Category</label>
-                  <select name="category" className="frm-ctr">
+                  <select
+                    name="category"
+                    className="frm-ctr"
+                    defaultValue={category}
+                  >
                     <option value="AC Repair Services">
                       AC Repair Services
                     </option>
@@ -120,7 +130,6 @@ const AddService = () => {
                       onChange={(e) =>
                         setPrevImg(URL.createObjectURL(e.target.files[0]))
                       }
-                      required
                     />
                     <div className="bg-primary text-white p-2 rounded-lg cursor-pointer">
                       Upload Image
@@ -148,4 +157,4 @@ const AddService = () => {
   );
 };
 
-export default AddService;
+export default EditService;

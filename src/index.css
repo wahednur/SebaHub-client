@@ -65,7 +65,13 @@ h6 {
 /* Desk navbar css end  */
 /* Button css start  */
 .btn {
-  @apply flex justify-center items-center bg-primary hover:bg-secondary py-2 px-4  duration-300 ease-in-out text-white rounded-md;
+  @apply flex justify-center items-center cursor-pointer bg-primary hover:bg-secondary py-2 px-4  duration-300 ease-in-out text-white rounded-md;
+}
+.btn-green {
+  @apply flex justify-center items-center cursor-pointer bg-success hover:bg-secondary py-2 px-4  duration-300 ease-in-out text-white rounded-md;
+}
+.btn-delete {
+  @apply flex justify-center items-center cursor-pointer bg-error hover:bg-secondary py-2 px-4  duration-300 ease-in-out text-white rounded-md;
 }
 /* Button css start  */
 
@@ -85,20 +91,21 @@ h6 {
 .desk-nav nav ul li a.active {
   @apply text-primary;
 }
-.desk-nav .right-nav {
+.right-nav {
   @apply flex text-lg items-center gap-10 relative;
 }
-.desk-nav .right-nav .nav-icon {
+.right-nav .nav-icon {
   @apply flex gap-4 text-lg;
 }
-.desk-nav .right-nav .nav-icon a {
+.right-nav .nav-icon a {
   @apply hover:text-primary duration-300;
 }
-.desk-nav .right-nav .user-icon {
+.right-nav .user-icon,
+.user-icon {
   @apply rounded-full border border-primary w-12 h-12;
 }
 .nav-user-container {
-  @apply bg-white w-[300px] z-10 border border-primary rounded-lg p-4 space-y-4 absolute -right-[700px] opacity-0 top-16 duration-500;
+  @apply bg-white w-[300px] z-50 border border-primary rounded-lg p-4 space-y-4 absolute -right-[700px] opacity-100 top-16 duration-500;
 }
 .nav-user-container .user-info {
   @apply flex gap-2 items-center;
@@ -133,9 +140,7 @@ h6 {
 .frm-ctr {
   @apply w-full px-3 py-2 border border-primary/30 rounded-md focus:outline-none;
 }
-a {
-  @apply hover:text-primary duration-300;
-}
+
 .banner::before {
   @apply absolute top-0 left-0 w-full h-full bg-black/20 content-[''];
   z-index: -1;
@@ -151,4 +156,8 @@ a {
 }
 .grp-col {
   @apply flex flex-col mb-5;
+}
+td,
+th {
+  @apply py-2 px-4;
 }
