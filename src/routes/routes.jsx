@@ -4,6 +4,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import RootLayout from "../layouts/RootLayout";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import MyBookingList from "../pages/bookings/MyBookingList";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/home/HomePage";
 import AddService from "../pages/services/AddService";
@@ -75,6 +76,15 @@ const router = createBrowserRouter([
         ),
         loader: async ({ params }) =>
           await fetch(`${apiUrl}/service/${params.id}`),
+      },
+      {
+        path: "booked-services",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <MyBookingList />
+          </PrivateRoute>
+        ),
       },
     ],
   },

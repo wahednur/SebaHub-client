@@ -1,13 +1,16 @@
+import axios from "axios";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import useAuth from "./../../hooks/useAuth";
+import { apiUrl } from "./../../hooks/userServerAPI";
 const ServiceDetails = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const getServices = useLoaderData();
   const { _id, title, area, description, price, image, category } = getServices;
+  const navigate = useNavigate();
   const handleBooking = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -26,7 +29,15 @@ const ServiceDetails = () => {
       email: user?.email,
       price,
     };
-    console.log(booking);
+    try {
+      const { data } = await axios.post(`${apiUrl}/bookings`, booking);
+      navigate("/dashboard/booked-services");
+      toast.success(`${title} successfully booked`, data);
+      setOpen(false);
+    } catch (error) {
+      toast.error(error.message);
+    }
+    console.table(booking);
   };
   return (
     <>
