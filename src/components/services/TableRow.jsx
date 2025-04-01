@@ -13,7 +13,10 @@ const TableRow = ({ service }) => {
         <Link to={`/services/${service._id}`} className="btn">
           <FaRegEye />
         </Link>
-        <Link to={`/services/edit/${service._id}`} className="btn-green">
+        <Link
+          to={`/dashboard/services/edit/${service._id}`}
+          className="btn-green"
+        >
           <FaRegEdit />
         </Link>
         <button className="btn-delete">
