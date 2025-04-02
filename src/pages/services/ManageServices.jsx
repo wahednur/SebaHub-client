@@ -1,17 +1,15 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import TableRow from "../../components/services/TableRow";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "./../../hooks/useAuth";
-import { apiUrl } from "./../../hooks/userServerAPI";
 
 const ManageServices = () => {
   const { user } = useAuth();
   const [services, setServices] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   const getServices = async () => {
-    const { data } = await axios.get(`${apiUrl}/services/${user?.email}`, {
-      withCredentials: true,
-    });
+    const { data } = await axiosSecure.get(`/services/${user?.email}`);
     setServices(data);
     return setServices(data);
   };

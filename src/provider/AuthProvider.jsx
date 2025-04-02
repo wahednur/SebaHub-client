@@ -105,6 +105,7 @@ const AuthProvider = ({ children }) => {
               {},
               { withCredentials: true }
             );
+            setLoading(false);
           } catch (err) {
             console.log(err.message);
           }
