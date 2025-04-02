@@ -9,7 +9,9 @@ const ManageServices = () => {
   const [services, setServices] = useState([]);
 
   const getServices = async () => {
-    const { data } = await axios.get(`${apiUrl}/services/${user?.email}`);
+    const { data } = await axios.get(`${apiUrl}/services/${user?.email}`, {
+      withCredentials: true,
+    });
     setServices(data);
     return setServices(data);
   };

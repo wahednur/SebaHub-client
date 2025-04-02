@@ -1,6 +1,8 @@
+import axios from "axios";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   updateProfile,
@@ -8,6 +10,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 import auth from "../firebase/firebaseConfig";
+import { apiUrl } from "../hooks/userServerAPI";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -80,13 +83,51 @@ const AuthProvider = ({ children }) => {
 
   // User auth state observer
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-      console.log(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
+    const checkAuthStatus = async () => {
+      const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+        const userEmail = currentUser?.email || user?.email;
+        const loggedUser = { email: userEmail };
+
+        setUser(currentUser);
+        setLoading(false);
+        if (currentUser?.email) {
+          try {
+            const { data } = await axios.post(`${apiUrl}/jwt`, loggedUser, {
+              withCredentials: true,
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        } else {
+          try {
+            const { data } = axios.post(
+              `${apiUrl}/logout`,
+              {},
+              { withCredentials: true }
+            );
+          } catch (err) {
+            console.log(err.message);
+          }
+        }
+      });
+      return () => unsubscribe();
+    };
+    checkAuthStatus();
+
+    // const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+    //   setUser(currentUser);
+    //   const loggedUser = currentUser?.email || user?.email;
+    //   const userEmail = { email: loggedUser };
+
+    //   setLoading(false);
+    //   axios
+    //     .post(`${apiUrl}/jwt`, userEmail, { withCredentials: true })
+    //     .then((res) => {
+    //       console.log("Token response", res.data);
+    //     });
+    // });
+    // return () => unsubscribe();
+  }, [user?.email]);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
