@@ -145,7 +145,7 @@ const EditService = () => {
                 </div>
                 <div>
                   <button type="submit" className="btn">
-                    Add Service
+                    Update Service
                   </button>
                 </div>
               </div>

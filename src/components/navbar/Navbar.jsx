@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import ThemeToggle from "../theme/ThemeToggle";
 import UserNav from "./UserNav";
 
 const Navbar = () => {
@@ -24,7 +25,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="desk-nav hidden lg:block border-b-secondary border-b backdrop-blur-md relative z-50">
+      <div className="desk-nav hidden lg:block border-b-secondary border-b backdrop-blur-md relative z-50 light:bg-white dark:bg-gray-800 dark:text-white">
         <div className="flex items-center justify-between h-16 container">
           <Link to={`/`}>
             <h1 className="font-bold text-2xl text-primary">
@@ -48,6 +49,7 @@ const Navbar = () => {
                 Dashboard
               </Link>
             )}
+            <ThemeToggle />
 
             {user?.email && <UserNav />}
           </div>

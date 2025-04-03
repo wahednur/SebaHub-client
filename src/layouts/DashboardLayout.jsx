@@ -6,7 +6,7 @@ import Topbar from "../components/dashboard/Topbar";
 const DashboardLayout = () => {
   const [open, setOpen] = useState(true);
   return (
-    <div className="overflow-x-hidden w-full">
+    <div className="overflow-x-hidden w-full dark:bg-bg-dark">
       <div className="w-full relative z-10 ">
         <Topbar open={open} setOpen={setOpen} />
       </div>

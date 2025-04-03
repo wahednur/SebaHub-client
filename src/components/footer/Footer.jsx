@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="bg-neutral-100">
+    <div className="bg-neutral-100 dark:bg-bg-dark dark:text-text-dark">
       <div className="container">
         <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="text-text-light">
+          <div className="text-text-light dark:text-text-dark">
             <h4 className="text-2xl font-bold mb-2">Contact</h4>
             <p>212121 / +8801917839303</p>
             <p>info@sebahub.com</p>

@@ -6,7 +6,7 @@ const ServiceCard = ({ service }) => {
   return (
     <Link
       to={`/services/${_id}`}
-      className="border border-primary/15 hover:border-primary duration-300 hover:drop-shadow-md hover:scale-110 p-5 rounded-lg"
+      className="border border-primary/15 hover:border-primary duration-300 hover:drop-shadow-md dark:text-text-dark hover:scale-110 p-5 rounded-lg dark:bg-gray-500"
     >
       <img
         className="w-full aspect-[3/2] rounded-lg object-cover mb-5 object-center"

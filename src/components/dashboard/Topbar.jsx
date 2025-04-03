@@ -2,6 +2,7 @@ import React from "react";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import UserNav from "../navbar/UserNav";
+import ThemeToggle from "../theme/ThemeToggle";
 
 const Topbar = ({ setOpen, open }) => {
   return (
@@ -25,7 +26,8 @@ const Topbar = ({ setOpen, open }) => {
             placeholder="Search..."
           />
         </div>
-        <div>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
           <UserNav />
         </div>
       </div>

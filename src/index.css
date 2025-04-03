@@ -5,8 +5,8 @@
     --primary: #00a8b5;
     --secondary: #f5a623;
     --bg-light: #f8fafc;
-    --bg-dark: #1f2a44;
-    --text-light: #2d3748;
+    --bg-dark: #1c1c1d;
+    --text-light: #1c1c1d;
     --text-dark: #e2e8f0;
     --success: #38a169;
     --warning: #d69e2e;
@@ -33,6 +33,7 @@
   --font-poppins: var(--poppins);
   --font-roboto: var(--roboto);
 }
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Default font set  */
 body {

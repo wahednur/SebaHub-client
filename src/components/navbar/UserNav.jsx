@@ -31,7 +31,7 @@ const UserNav = () => {
           <img
             className="user-icon"
             src={user?.photoURL}
-            no-referrer="true"
+            referrerPolicy="no-referrer"
             alt=""
           />
         ) : (
@@ -50,7 +50,7 @@ const UserNav = () => {
             <img
               className="user-icon"
               src={user?.photoURL}
-              no-referrer="true"
+              referrerPolicy="no-referrer"
               alt=""
             />
           ) : (
@@ -70,6 +70,7 @@ const UserNav = () => {
         >
           Dashboard
         </Link>
+
         <hr className="text-gray-300" />
         <div className="flex flex-col space-y-2 dark:text-dark text-text-light">
           <Link to="/dashboard/add-service">Add Service</Link>
