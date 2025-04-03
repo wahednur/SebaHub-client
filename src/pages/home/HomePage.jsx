@@ -72,6 +72,40 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <div className="py-10 md:py-16 lg:py-20">
+        <div className="container">
+          <div className="flex flex-col md:flex-row gap-10 items-center justify-between">
+            <div className="w-full md:w-4/12">
+              <img src="/app.webp" alt="" />
+            </div>
+            <div className="w-full md:w-8/12 flex flex-col gap-5">
+              <div className="">
+                <h4 className="text-text-light text-2xl uppercase dark:text-text-dark ">
+                  Download Our App
+                </h4>
+                <h1 className="sec-heading">
+                  Any Service, Any Time, Anywhere.
+                </h1>
+              </div>
+              <p>
+                Give us your mobile number. You’ll get an SMS with the app
+                download link.
+              </p>
+              <div className="flex items-center">
+                <input
+                  type="text"
+                  name="msg"
+                  placeholder="Your Mobile Number"
+                  className="w-full bg-white px-5 py-3 focus:outline-none rounded-tl-xl rounded-bl-xl shadow-md border border-r-0 border-primary"
+                />{" "}
+                <button className="bg-primary text-white px-5 py-3.5 rounded-tr-xl rounded-br-xl shadow-md w-48 cursor-pointer hover:bg-secondary duration-300">
+                  Get the app
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
