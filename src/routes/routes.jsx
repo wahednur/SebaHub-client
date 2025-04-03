@@ -39,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/services/:id",
-        element: <ServiceDetails />,
+        element: (
+          <PrivateRoute>
+            <ServiceDetails />
+          </PrivateRoute>
+        ),
         loader: async ({ params }) =>
           await fetch(`${apiUrl}/service/${params.id}`),
       },

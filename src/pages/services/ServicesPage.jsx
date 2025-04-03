@@ -3,7 +3,7 @@ import Services from "../../components/services/Services";
 
 const ServicesPage = () => {
   return (
-    <div className="container">
+    <div className="container mt-10">
       <Services />
     </div>
   );

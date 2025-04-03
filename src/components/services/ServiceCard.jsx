@@ -18,6 +18,9 @@ const ServiceCard = ({ service }) => {
         <p>Area: {area}</p>
         <p className="text-primary text-2xl font-semibold">Price: {price}</p>
       </div>
+      <Link to={`/services/${_id}`} className="btn mt-5 mx-auto">
+        View Details
+      </Link>
     </Link>
   );
 };

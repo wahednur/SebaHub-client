@@ -87,7 +87,7 @@ const HomePage = () => {
                   Any Service, Any Time, Anywhere.
                 </h1>
               </div>
-              <p>
+              <p className="dark:text-text-dark text-text-light">
                 Give us your mobile number. You’ll get an SMS with the app
                 download link.
               </p>

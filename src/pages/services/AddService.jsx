@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { imageUpload } from "../../api/utils";
 import useAuth from "../../hooks/useAuth";
@@ -10,7 +9,6 @@ import { apiUrl } from "../../hooks/userServerAPI";
 const AddService = () => {
   const { user } = useAuth();
   const [prevImg, setPrevImg] = useState();
-  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,6 +18,8 @@ const AddService = () => {
     const area = form.area.value;
     const price = parseFloat(form.price.value);
     const image = form.image.files[0];
+    if (!image || image.size < 0 || prevImg.size < 0)
+      return toast.error("Please select and image");
     try {
       const img_url = await imageUpload(image);
       const service = {
@@ -37,7 +37,6 @@ const AddService = () => {
       const { data } = await axios.post(`${apiUrl}/services`, service);
       toast.success(`${title} successfully added`, data);
       form.reset();
-      navigate("/dashboard/manage-services");
     } catch (error) {
       toast.error(error.message);
     }
@@ -123,7 +122,7 @@ const AddService = () => {
                       onChange={(e) =>
                         setPrevImg(URL.createObjectURL(e.target.files[0]))
                       }
-                      required
+                      // required
                     />
                     <div className="bg-primary text-white p-2 rounded-lg cursor-pointer">
                       Upload Image

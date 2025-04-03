@@ -2,7 +2,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { FaRegEye, FaTrashCan } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-const TableRow = ({ service }) => {
+const TableRow = ({ service, handleDelete }) => {
   return (
     <tr className="text-left p-5 odd:bg-primary/5 dark:text-text-dark text-text-light even:bg-primary/0">
       <td>{service.title}</td>
@@ -19,7 +19,10 @@ const TableRow = ({ service }) => {
         >
           <FaRegEdit />
         </Link>
-        <button className="btn-delete">
+        <button
+          onClick={() => handleDelete(service._id, service.title)}
+          className="btn-delete"
+        >
           <FaTrashCan />
         </button>
       </td>

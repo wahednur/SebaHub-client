@@ -45,7 +45,7 @@ const ServiceDetails = () => {
         <Helmet>
           <title>{title}</title>
         </Helmet>
-        <div className="flex flex-col md:flex-row gap-6 pt-10">
+        <div className="flex flex-col md:flex-row gap-6 pt-10 dark:text-text-dark text-text-light">
           <div className="w-full md:w-7/12">
             <h2 className="text-2xl font-semibold">{title}</h2>
             <p className="text-sm text-gray-500">Category: {category}</p>
@@ -103,11 +103,14 @@ const ServiceDetails = () => {
                 <button className="btn" type="submit">
                   Book Now
                 </button>
-                <button onClick={() => setOpen(false)} className="btn-delete">
-                  cancel
-                </button>
               </div>
             </form>
+            <button
+              onClick={() => setOpen(false)}
+              className="btn-delete absolute bottom-5 right-5"
+            >
+              cancel
+            </button>
           </div>
         </div>
       </div>
