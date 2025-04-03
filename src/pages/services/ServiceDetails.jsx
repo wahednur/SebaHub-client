@@ -25,14 +25,29 @@ const ServiceDetails = () => {
       customerName: name,
       address,
       mobile,
+      host: {
+        email: getServices?.user?.email,
+        name: getServices?.user?.name,
+      },
       status: "pending",
-      email: user?.email,
+      client: {
+        email: user?.email,
+        name: user?.displayName,
+      },
+
       price,
     };
     try {
       const { data } = await axios.post(`${apiUrl}/bookings`, booking);
       navigate("/dashboard/booked-services");
-      toast.success(`${title} successfully booked`, data);
+
+      toast.success(
+        <p className="text-primary font-semibold">
+          {title} <span className="text-text-light">successfully booked</span>
+        </p>,
+
+        data
+      );
       setOpen(false);
     } catch (error) {
       toast.error(error.message);
@@ -76,28 +91,57 @@ const ServiceDetails = () => {
       <div
         className={`${open ? "flex opacity-100 transition-all duration-300 delay-100" : "hidden opacity-0"}  ease-in-out items-center justify-center w-full h-full fixed left-0 top-0 bg-black/20`}
       >
-        <div className="w-full md:w-1/2 bg-white rounded-lg p-5 space-y-5 relative">
+        <div className="w-full md:w-1/2 rounded-lg p-5 space-y-5 relative dark:bg-gray-800 bg-gray-200">
           <div className="bg-secondary px-5 py-2 absolute top-20 right-0 text-2xl font-bold text-white">
             Price: {price}
           </div>
-          <div>
+          <div className="text-text-light dark:text-text-dark">
             <h2 className="text-2xl font-bold">Book {title} services</h2>
-            <p className="text-sm text-text-light">category: {category}</p>
+            <p className="text-sm ">category: {category}</p>
           </div>
-          <h4 className="text-xl font-semibold">Please fill up this form </h4>
+          <h4 className="text-xl font-semibold text-text-light dark:text-text-dark">
+            Please fill up this form{" "}
+          </h4>
           <div className="w-full">
-            <form onSubmit={handleBooking} className="w-full">
+            <form
+              onSubmit={handleBooking}
+              className="w-full text-text-light dark:text-text-dark"
+            >
               <div className="grp-col">
                 <label htmlFor="name">Name</label>
-                <input type="text" name="name" className="frm-ctr" />
+                <input
+                  type="text"
+                  name="name"
+                  className="frm-ctr"
+                  placeholder="Enter your name"
+                />
               </div>
               <div className="grp-col">
                 <label htmlFor="address">Address</label>
-                <input type="text" name="address" className="frm-ctr" />
+                <input
+                  type="text"
+                  name="address"
+                  className="frm-ctr"
+                  placeholder="Enter your email"
+                />
               </div>
               <div className="grp-col">
                 <label htmlFor="mobile">Mobile</label>
-                <input type="tel" name="mobile" className="frm-ctr" />
+                <input
+                  type="tel"
+                  name="mobile"
+                  className="frm-ctr"
+                  placeholder="Enter your mobile number"
+                />
+              </div>
+              <div className="grp-col">
+                <label htmlFor="message">Mobile</label>
+                <textarea
+                  name="message"
+                  className="frm-ctr "
+                  placeholder="Write your message here"
+                  rows={5}
+                ></textarea>
               </div>
               <div className="flex justify-between">
                 <button className="btn" type="submit">

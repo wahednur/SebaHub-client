@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import TableRow from "../../components/services/TableRow";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -43,6 +44,9 @@ const ManageServices = () => {
   }, []);
   return (
     <div className="container mt-10 border border-primary rounded-lg overflow-hidden">
+      <Helmet>
+        <title>Manage services</title>
+      </Helmet>
       <table className="w-full ">
         <thead className="bg-primary text-white text-left">
           <tr className="text-left">

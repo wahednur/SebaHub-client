@@ -48,6 +48,10 @@ h5,
 h6 {
   @apply font-poppins;
 }
+input,
+textarea {
+  @apply text-text-light dark:text-text-dark;
+}
 /* card title */
 .sec-heading {
   @apply text-2xl md:text-3xl lg:text-4xl mb-0 font-bold text-primary;
@@ -139,7 +143,7 @@ h6 {
 /* Navbar css end  */
 
 .frm-ctr {
-  @apply w-full px-3 py-2 border border-primary/30 rounded-md dark:text-text-dark text-text-light focus:outline-none;
+  @apply w-full px-3 py-2 border border-primary/30 rounded-md  focus:outline-none text-text-light dark:text-text-dark;
 }
 
 .banner::before {
