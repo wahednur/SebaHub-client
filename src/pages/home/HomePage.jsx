@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Banner from "../../components/banner/Banner";
 import HomeService from "../../components/services/HomeService";
 
@@ -20,6 +21,56 @@ const HomePage = () => {
           </p>
         </div>
         <HomeService />
+        <div className="my-10 container flex justify-center items-center">
+          <Link className="btn mx-auto" to="/services">
+            All Services
+          </Link>
+        </div>
+      </div>
+      <div className="bg-primary/10 py-10 md:py-16 lg:py-20">
+        <div className="container">
+          <div className="">
+            <h4 className="text-text-light text-2xl uppercase dark:text-text-dark ">
+              Why Choose us
+            </h4>
+            <h1 className="sec-heading">Because we care about your safety..</h1>
+          </div>
+          <div className="flex flex-col md:flex-row gap-5 mt-10">
+            <div className="w-full md:w-5/12 grid grid-cols-2 content-center gap-10">
+              <div className="flex gap-2.5 items-center">
+                <img className="h-12" src="/mask.svg" alt="" />
+                <h4 className="text-2xl dark:text-text-dark text-text-light font-semibold">
+                  Ensuring Masks
+                </h4>
+              </div>
+              <div className="flex gap-2.5 items-center">
+                <img className="h-12" src="/24-7.svg" alt="" />
+                <h4 className="text-2xl dark:text-text-dark text-text-light font-semibold">
+                  24/7 Support
+                </h4>
+              </div>
+              <div className="flex gap-2.5 items-center">
+                <img className="h-12" src="/wash.svg" alt="" />
+                <h4 className="text-2xl dark:text-text-dark text-text-light font-semibold">
+                  Sanitising Hands & Equipment
+                </h4>
+              </div>
+              <div className="flex gap-2.5 items-center">
+                <img className="h-12" src="/gloves.svg" alt="" />
+                <h4 className="text-2xl dark:text-text-dark text-text-light font-semibold">
+                  Ensuring Gloves
+                </h4>
+              </div>
+            </div>
+            <div className="w-full md:w-7/12 flex  gap-5 justify-between items-center">
+              <img
+                className="w-full h-full object-cover object-center rounded-lg"
+                src="/team.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

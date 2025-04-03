@@ -7,7 +7,7 @@ import ThemeToggle from "../theme/ThemeToggle";
 const Topbar = ({ setOpen, open }) => {
   return (
     <div className="">
-      <div className="w-full h-16 dark:bg-gray-800 bg-white flex items-center justify-between  dark:text-white px-5">
+      <div className="w-full h-16 dark:bg-gray-800 bg-gray-200 flex items-center justify-between  dark:text-white px-5">
         <div className="flex items-center gap-2">
           <button onClick={() => setOpen(!open)} className="cursor-pointer">
             <FaBars />
@@ -22,7 +22,7 @@ const Topbar = ({ setOpen, open }) => {
           <input
             type="text"
             name="search"
-            className="frm-ctr dark:bg-white text-gray-500"
+            className="frm-ctr "
             placeholder="Search..."
           />
         </div>

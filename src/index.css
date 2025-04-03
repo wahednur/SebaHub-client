@@ -139,7 +139,7 @@ h6 {
 /* Navbar css end  */
 
 .frm-ctr {
-  @apply w-full px-3 py-2 border border-primary/30 rounded-md focus:outline-none;
+  @apply w-full px-3 py-2 border border-primary/30 rounded-md dark:text-text-dark text-text-light focus:outline-none;
 }
 
 .banner::before {

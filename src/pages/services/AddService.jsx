@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { imageUpload } from "../../api/utils";
 import useAuth from "../../hooks/useAuth";
@@ -9,6 +10,7 @@ import { apiUrl } from "../../hooks/userServerAPI";
 const AddService = () => {
   const { user } = useAuth();
   const [prevImg, setPrevImg] = useState();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -35,6 +37,7 @@ const AddService = () => {
       const { data } = await axios.post(`${apiUrl}/services`, service);
       toast.success(`${title} successfully added`, data);
       form.reset();
+      navigate("/dashboard/manage-services");
     } catch (error) {
       toast.error(error.message);
     }

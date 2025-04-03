@@ -11,9 +11,9 @@ const Sidebar = ({ open }) => {
         Dashboard
       </Link>
       <div
-        className={`w-full h-full mt-5 duration-300 transition-all ${open ? "px-5" : "px-0 -translate-x-[100px]"}`}
+        className={`w-full h-full mt-5 duration-300 dark:text-text-dark text-text-light transition-all ${open ? "px-5" : "px-0 -translate-x-[100px]"}`}
       >
-        <div className="flex flex-col space-y-2 dark:text-dark text-text-light">
+        <div className="flex flex-col space-y-2  dark:text-text-dark text-text-light">
           <Link to="/dashboard/add-service">Add Service</Link>
           <Link to="/dashboard/manage-services">Manage Services</Link>
           <Link to="/dashboard/booked-services">Booked Services</Link>
