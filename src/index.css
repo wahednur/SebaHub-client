@@ -78,6 +78,9 @@ textarea {
 .btn-delete {
   @apply flex justify-center items-center cursor-pointer bg-error hover:bg-secondary py-2 px-4  duration-300 ease-in-out text-white rounded-md;
 }
+.btn-disable {
+  @apply flex justify-center items-center cursor-not-allowed bg-neutral-400 py-2 px-4  duration-300 ease-in-out text-white rounded-md disabled:opacity-75;
+}
 /* Button css start  */
 
 .container {

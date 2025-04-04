@@ -18,9 +18,20 @@ const DashboardLayout = () => {
           <Sidebar open={open} />
         </div>
         <div
-          className={`px-5 w-full min-h-[calc(100vh-64px)] duration-300 transition-all ${open ? "w-[calc(100%-300px)] ml-[300px]" : "w-full ml-0"}`}
+          className={`w-full duration-300 transition-all ${open ? "w-[calc(100%-300px)] ml-[300px]" : "w-full ml-0"}`}
         >
-          <Outlet />
+          <div className=" min-h-[calc(100vh-160px)] px-5 ">
+            <Outlet />
+          </div>
+          <div className="bg-primary text-white">
+            <div className="container flex justify-center items-center gap-2">
+              <p className=" text-sm py-4">
+                Copyright &copy; {new Date().getFullYear()} SebaHub Inc | All
+                rights reserved
+              </p>
+              |<p className="text-text-dark"> Developed by Wahed Nur</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

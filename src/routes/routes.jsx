@@ -12,6 +12,8 @@ import EditService from "../pages/services/EditService";
 import ManageServices from "../pages/services/ManageServices";
 import ServiceDetails from "../pages/services/ServiceDetails";
 import ServicesPage from "../pages/services/ServicesPage";
+import StatusToDo from "../pages/services/StatusToDo";
+import ToDoService from "../pages/services/ToDoService";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -85,10 +87,28 @@ const router = createBrowserRouter([
         path: "booked-services",
         element: (
           <PrivateRoute>
-            {" "}
             <MyBookingList />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "service-to-do",
+        element: (
+          <PrivateRoute>
+            <ToDoService />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "update/:id",
+        element: (
+          <PrivateRoute>
+            <StatusToDo />
+          </PrivateRoute>
+        ),
+
+        loader: async ({ params }) =>
+          await fetch(`${apiUrl}/booking/${params.id}`),
       },
     ],
   },
