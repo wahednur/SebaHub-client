@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 import { Link } from "react-router-dom";
 import Banner from "../../components/banner/Banner";
 import HomeService from "../../components/services/HomeService";
@@ -19,22 +21,48 @@ const HomePage = () => {
             experience and meet your needs effectively!
           </p>
         </div>
-        <HomeService />
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, scale: 1, transition: { duration: 2 } }}
+        >
+          <HomeService />
+        </motion.div>
         <div className="my-10 container flex justify-center items-center">
           <Link className="btn mx-auto" to="/services">
             All Services
           </Link>
         </div>
       </div>
-      <div className="bg-primary/10 py-10 md:py-16 lg:py-20">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, scale: 1, transition: { duration: 3 } }}
+      >
         <div className="container">
           <div className="">
-            <h4 className="text-text-light text-2xl uppercase dark:text-text-dark ">
+            <motion.h4
+              animate={{ x: 0 }}
+              initial={{ x: -1000 }}
+              transition={{ duration: 2 }}
+              className="text-text-light text-2xl uppercase dark:text-text-dark "
+            >
               Why Choose us
-            </h4>
-            <h1 className="sec-heading">Because we care about your safety..</h1>
+            </motion.h4>
+            <motion.h1
+              animate={{ x: 0 }}
+              initial={{ x: 500, opacity: 0 }}
+              transition={{ duration: 3, delay: 1 }}
+              whileInView={{ opacity: 1 }}
+              className="sec-heading"
+            >
+              Because we care about your safety..
+            </motion.h1>
           </div>
-          <div className="flex flex-col md:flex-row gap-5 mt-10">
+          <motion.div
+            animate={{ x: 0 }}
+            initial={{ x: -1000 }}
+            transition={{ duration: 2, delay: 1 }}
+            className="flex flex-col md:flex-row gap-5 mt-10"
+          >
             <div className="w-full md:w-5/12 grid grid-cols-2 content-center gap-10">
               <div className="flex gap-2.5 items-center">
                 <img className="h-12" src="/mask.svg" alt="" />
@@ -68,9 +96,9 @@ const HomePage = () => {
                 alt=""
               />
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
       <div className="py-10 md:py-16 lg:py-20">
         <div className="container">
           <div className="flex flex-col md:flex-row gap-10 items-center justify-between">
