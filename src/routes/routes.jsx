@@ -7,6 +7,7 @@ import Register from "../pages/auth/Register";
 import MyBookingList from "../pages/bookings/MyBookingList";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/home/HomePage";
+import Search from "../pages/search/Search";
 import AddService from "../pages/services/AddService";
 import EditService from "../pages/services/EditService";
 import ManageServices from "../pages/services/ManageServices";
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
         ),
         loader: async ({ params }) =>
           await fetch(`${apiUrl}/service/${params.id}`),
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
     ],
   },

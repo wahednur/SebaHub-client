@@ -50,7 +50,7 @@ h6 {
 }
 input,
 textarea {
-  @apply text-text-light dark:text-text-dark;
+  @apply text-text-light;
 }
 /* card title */
 .sec-heading {
