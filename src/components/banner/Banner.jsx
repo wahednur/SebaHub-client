@@ -7,12 +7,11 @@ const Banner = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
+
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.get(
-        `${apiUrl}/services/search?search=${query}`
-      );
+      const { data } = await axios.get(`${apiUrl}/search?search=${query}`);
       setResults(data);
       navigate("/search", { state: { results: data } });
     } catch (err) {

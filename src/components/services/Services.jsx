@@ -18,7 +18,7 @@ const Services = () => {
       console.log(err.message);
     }
   };
-  console.log(results);
+
   const getData = async () => {
     const { data } = await axios.get(`${apiUrl}/services`);
     setServices(data);
